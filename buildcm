@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# This is a script to automate the build process and clean the out dir after each build.
+# It will log the duration of the build as well as copy the .zip and .md5sum to a nightlies folder.
+# Written by Tim Clark
+
+## User configurable variables
+CM_BUILDID=HAZE
+CM_ZIP_DIR=../../Google/android/nightlies/"$1"/
+
+## Setup Environment
+source build/envsetup.sh
+lunch cm_"$1"-userdebug
+export TARGET_UNOFFICIAL_BUILD_ID="$CM_BUILDID"
+export USE_CCACHE=true
+export TIMEFORMAT='%3lR'
+
+## Begin build process and write duration stats to logfile
+echo "Begining build process"
+( time mka bacon ) 2> "$1"-log.txt
+
+## Copy log
+echo "Copying log..."
+cp "$1"-log.txt "$CM_ZIP_DIR"
+
+## Detect if zip was created, then move to CM ZIP DIR and remove product folder.
+if [ -f "$OUT_DIR_COMMON_BASE"/system/target/product/"$1"/cm-*.zip ]
+    then
+        ## Move zip to nightlies folder
+        echo "Moving ROM zip and md5sum to nightlies folder"
+        mv "$OUT_DIR_COMMON_BASE"/system/target/product/"$1"/cm-*zip* "$CM_ZIP_DIR"
+
+        ## Make clobber
+        make clobber
+fi

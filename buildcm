@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # This is a script to automate the build process and clean the out dir after each build.
-# It will log the duration of the build as well as copy the .zip and .md5sum to a nightlies folder.
+# It will log the duration of the build as well as copy the .zip and .md5sum to a pre-defined folder.
 # Written by Tim Clark
 
 ## User configurable variables

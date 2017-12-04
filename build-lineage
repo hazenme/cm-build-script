@@ -35,5 +35,6 @@ if [ -e "$T"/out/target/product/"$1"/lineage-*.zip ]
         echo "Uploading to Google Drive"
         /usr/bin/drive push -no-prompt -destination android/ nightlies/
         ## Make clobber
+        cd "$T"
         make clobber
 fi

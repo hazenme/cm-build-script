@@ -7,6 +7,8 @@ Place this script in your LOS source tree's base dir (eg. /android/system/)
 Define the LOS_ZIP_DIR variable (nano build-lineage)
 
 LOS_ZIP_DIR is where the .zip .md5sum and log will be moved. (Useful for syncing with Google Drive/Dropbox, etc)
+This script assumes that you have Drive installed in /usr/bin/drive. (sudo apt install drive)
+If you install Drive with snap, the path in the script will need to be changed to /snap/drive/22/bin/drive
 
 Error log will be available in the LOS_ZIP_DIR as 'devicename'-log.txt (Eg. hammerhead-log.txt)
 

@@ -24,7 +24,7 @@ echo "Begining build process"
 echo "Copying log..."
 cp "$1"-log.txt "$LOS_ZIP_DIR"
 
-## Detect if zip was created, then move to CM ZIP DIR and remove product folder.
+## Detect if zip was created, then move to LOS ZIP DIR and remove product folder.
 if [ -e "$T"/out/target/product/"$1"/lineage-*.zip ]
     then
         ## Move zip to nightlies folder
